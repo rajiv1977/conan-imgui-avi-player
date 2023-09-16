@@ -24,4 +24,8 @@ cmake --build . --config Debug
 # What you need:
 **imguiAviMex**
 
-Example: imguiAviMex("name.avi") or imguiAviMex("name.avi", freq) or imguiAviMex("webcam")
+Example (In folder Test\Mex): imguiAviMex("name.avi") or imguiAviMex("name.avi", freq) or imguiAviMex("webcam")
+
+# In C++:
+**conan-imgui-avi-player.exe**
+Example (In folder Test\Exe): conan-imgui-avi-player.exe "name.avi" or conan-imgui-avi-player.exe "name.avi" "freq" or conan-imgui-avi-player.exe "webcam"
