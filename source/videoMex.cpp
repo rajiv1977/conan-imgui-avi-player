@@ -4,7 +4,7 @@
 #include "mexAdapter.hpp"
 
 /// Player header
-#include "PlayAvi.h"
+#include "Video.h"
 
 /// Current Matlab OpenGL AVI version
 #define MATLAB_OPENGL_AVI_VERSION 1
@@ -51,7 +51,7 @@ void MexFunction::operator()(matlab::mex::ArgumentList outputs, matlab::mex::Arg
             matlab::data::TypedArray<double> freqInfo = inputs[1];
             freq = dataFormat<matlab::data::TypedArray<double>, std::vector<double>>(freqInfo)[0];
         }
-        std::shared_ptr<ImGui::PlayAvi> run(new ImGui::PlayAvi(fileName[0], freq));
+        std::shared_ptr<Gui::Video> run(new Gui::Video(fileName[0]));
     }
 }
 
@@ -60,7 +60,7 @@ bool MexFunction::validateArguments(matlab::mex::ArgumentList outputs, matlab::m
     bool status = true;
 
     // Verify the input
-    if (inputs.size() != 0 && inputs.size() <= 2)
+    if (inputs.size() != 0 && inputs.size() < 2)
     {
         if (inputs[0].getType() != matlab::data::ArrayType::MATLAB_STRING)
         {
@@ -84,16 +84,6 @@ bool MexFunction::validateArguments(matlab::mex::ArgumentList outputs, matlab::m
                     std::string errorMsg = ".avi format only.";
                     displayError(errorMsg);
                 }
-            }
-        }
-
-        if (inputs.size() == 2)
-        {
-            if (inputs[1].getType() != matlab::data::ArrayType::DOUBLE)
-            {
-                status               = false;
-                std::string errorMsg = "Input should be a double";
-                displayError(errorMsg);
             }
         }
     }

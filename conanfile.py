@@ -7,8 +7,8 @@ from conan.errors import ConanInvalidConfiguration
 from conan.tools.files import copy
 
 
-class ImGuiAviPlayer(ConanFile):
-    name = "imguiaviplayer"
+class VideoPlayer(ConanFile):
+    name = "videoplayer"
     version = "1.0"
     
     author = "Rajiv Sithiravel"
@@ -51,25 +51,11 @@ class ImGuiAviPlayer(ConanFile):
             raise ConanInvalidConfiguration("This package is only compatible with Windows or Linux")
                                                                     
     def requirements(self):
-        self.requires("eigen/3.4.0")
-        self.requires("ffmpeg/4.4.3")
-        self.requires("freeglut/3.4.0")
-        self.requires("glfw/3.3.8")
-        self.requires("glew/2.2.0")
-        self.requires("imgui/cci.20230105+1.89.2.docking")
-        self.requires("opengl/system")
-        self.requires("zlib/1.2.13")
         self.requires("opencv/4.5.5")
         
     def build_requirements(self):
         self.tool_requires("cmake/3.27.0")
-   
-    def generate(self):
-        copy(self, "*glfw*", os.path.join(self.dependencies["imgui"].package_folder,
-             "res", "bindings"), os.path.join(self.source_folder, "bindings"))
-        copy(self, "*opengl3*", os.path.join(self.dependencies["imgui"].package_folder,
-             "res", "bindings"), os.path.join(self.source_folder, "bindings"))
-               
+             
     def generate(self):
         tc = CMakeToolchain(self)
         tc.generate()

@@ -1,5 +1,4 @@
-/// Player header
-#include "PlayAvi.h"
+#include "Video.h"
 
 int main(int argc, char* argv[])
 {
@@ -10,11 +9,8 @@ int main(int argc, char* argv[])
         return EXIT_SUCCESS;
     }
     std::string fileName(argv[1]);
-    float       freq = 18.0;
-    if (argc == 3)
-    {
-        freq = atof(argv[2]);
-    }
-    std::shared_ptr<ImGui::PlayAvi> run(new ImGui::PlayAvi(fileName, freq));
+
+    std::shared_ptr<Gui::Video> run(new Gui::Video(fileName));
+
     return EXIT_SUCCESS;
 }
