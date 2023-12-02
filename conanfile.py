@@ -52,7 +52,7 @@ class ImGuiAviPlayer(ConanFile):
                                                                     
     def requirements(self):
         self.requires("eigen/3.4.0")
-        self.requires("ffmpeg/4.4.3")
+        self.requires("ffmpeg/4.4.4")
         self.requires("freeglut/3.4.0")
         self.requires("glfw/3.3.8")
         self.requires("glew/2.2.0")
